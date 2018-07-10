@@ -51,7 +51,7 @@ In [1]: from ap import ap
 In [2]: import numpy as np
 In [4]: x = np.arange(10)
 In [5]: y = x ** 2
-In [7]: ap.plot(x, y, marker='_s')
+In [7]: print(ap.plot(x, y, marker='_s'))
   │                                               
   ┼+80.109                                     ◽  
   │                                               
@@ -79,9 +79,9 @@ In [7]: ap.plot(x, y, marker='_s')
 ```python
 
 In [1]: from ap import ap
-In [2]: numpy as np
+In [2]: import numpy as np
 In [3]: x = np.random.normal(0, 1, 1000000)
-In [4]: ap.hist(x, 20)
+In [4]: print(ap.hist(x, 20))
                         │                         
                        ∘┼+180303                  
                        |│ ∘                       
@@ -104,7 +104,7 @@ In [4]: ap.hist(x, 20)
    -4.39861             │              +4.48165   
 
 In [5]: y = np.random.normal(0, 1, 1000000)
-In [6]: ap.hist2d(x, y, bins=[20,20], width=30)
+In [6]: print(ap.hist2d(x, y, bins=[20,20], width=30))
                               
                               
              ....             
@@ -133,7 +133,7 @@ In [6]: ap.hist2d(x, y, bins=[20,20], width=30)
 In [1]: from ap import ap
 In [2]: from scipy import misc
 In [3]: im = misc.ascent()
-In [4]: ap.imshow(im.T)
+In [4]: print(ap.imshow(im.T))
 :::::::!!!!!!!!!!!!!!!:!: -....;.--::-;;;;>>>>>>>>
 :::::!!!!!!!!!!!!!!!!!!:.          ::--;;-->>>>>7>
 !!!::!!!!!!!!!!!!!!!!!!!;.---;;;;.;.::--;;-;>>>7>>

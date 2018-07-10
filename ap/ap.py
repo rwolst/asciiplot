@@ -684,7 +684,7 @@ def plot(x, y=None, marker=None, shape=(50, 20), draw_axes=True,
 
     p = AFigure(**flags)
 
-    print(p.plot(x, y, marker=marker, plot_slope=plot_slope))
+    return p.plot(x, y, marker=marker, plot_slope=plot_slope)
 
 
 def steppify(x, y):
@@ -721,12 +721,12 @@ def hist(x, bins=10, normed=False, weights=None, density=None, histtype='stem',
 
     _x = 0.5 * ( b[:-1] + b[1:] )
     if histtype == 'step':
-        step(_x, n.astype(float))
+        return step(_x, n.astype(float))
     elif histtype == 'stem':
-        stem(_x, n.astype(float))
+        return stem(_x, n.astype(float))
     else:
         _y = n.astype(float)
-        plot(_x, _y, shape=shape, draw_axes=draw_axes, newline=newline, marker=marker,
+        return plot(_x, _y, shape=shape, draw_axes=draw_axes, newline=newline, marker=marker,
              plot_slope=plot_slope, x_margin=x_margin, y_margin=y_margin,
              plot_labels=plot_labels, xlim=xlim, ylim=ylim)
 
@@ -736,7 +736,7 @@ def step(x, y, shape=(50, 20), draw_axes=True,
          y_margin=0.1, plot_labels=True, xlim=None, ylim=None ):
 
     _x, _y = steppify(x, y)
-    plot(_x, _y, shape=shape, draw_axes=draw_axes, newline=newline, marker=marker,
+    return plot(_x, _y, shape=shape, draw_axes=draw_axes, newline=newline, marker=marker,
          plot_slope=plot_slope, x_margin=x_margin, y_margin=y_margin,
          plot_labels=plot_labels, xlim=xlim, ylim=ylim)
 
@@ -746,7 +746,7 @@ def stem(x, y, shape=(50, 20), draw_axes=True,
          y_margin=0.1, plot_labels=True, xlim=None, ylim=None ):
 
     _x, _y = stemify(x, y)
-    plot(_x, _y, shape=shape, draw_axes=draw_axes, newline=newline, marker=marker,
+    return plot(_x, _y, shape=shape, draw_axes=draw_axes, newline=newline, marker=marker,
          plot_slope=plot_slope, x_margin=x_margin, y_margin=y_margin,
          plot_labels=plot_labels, xlim=xlim, ylim=ylim)
 
@@ -757,10 +757,10 @@ def hist2d(x, y, bins=[50, 20], range=None, normed=False, weights=None, ncolors=
     im, ex, ey = np.histogram2d(x, y, bins, range=None, normed=normed, weights=weights)
 
     if percentiles is None:
-        imshow(im, extent=[min(ex), max(ex), min(ey), max(ey)],
+        return imshow(im, extent=[min(ex), max(ex), min(ey), max(ey)],
                ncolors=ncolors, width=width)
     else:
-        percentile_imshow(im, levels=percentiles, extent=None,
+        return percentile_imshow(im, levels=percentiles, extent=None,
                           width=width, ncolors=width)
 
 
@@ -773,7 +773,7 @@ def percentile_imshow(im, levels=[68, 95, 99], extent=None, width=50, ncolors=16
     for e, lk in enumerate(sorted(levels)):
         _im[ _im <= 0.01 * float(lk) ] = n - e
 
-    imshow(1. - _im, extent=None, width=width, ncolors=ncolors)
+    return imshow(1. - _im, extent=None, width=width, ncolors=ncolors)
 
 
 def imshow(im, extent=None, width=50, ncolors=16):
@@ -809,4 +809,4 @@ def imshow(im, extent=None, width=50, ncolors=16):
             for w in range(width):
                 string += color[int(sum(_im[w, h]) * (ncolors - 1) )]
             string += "\n"
-    print(string)
+    return string
